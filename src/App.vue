@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <input type="radio" id="black" value="black" v-model="image">
+    <label for="black"><img src="./assets/black.png"></label>
+    <input type="radio" id="red" value="red" v-model="image">
+    <label for="red"><img src="./assets/red.png"></label>
+
+    <textarea v-model="msg" placeholder="ここに入力してください"></textarea>
+    <p>
+      {{ msg }}
+    </p>
+    <img :src="image_path(image)" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      msg: '',
+      image: 'black'
+    }
+  },
+  methods: {
+    image_path: function(value) {
+      return require("./assets/" + value + ".png")
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
